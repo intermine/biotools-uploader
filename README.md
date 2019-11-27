@@ -9,3 +9,5 @@ or
 ./gradlew run  --args='{API token} FlyMine'
 ```
 if you want to add a specific instance
+
+To generate Java Objects from JSON (FlyMine json) we have used http://www.jsonschema2pojo.org/
