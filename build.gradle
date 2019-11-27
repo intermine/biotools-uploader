@@ -1,0 +1,33 @@
+apply plugin: "java"
+apply plugin: "application"
+apply plugin: "idea"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java']
+        }
+    }
+}
+
+mainClassName = "org.intermine.biotools.BioToolsUploader"
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    compile group: 'javax.ws.rs', name: 'javax.ws.rs-api', version: '2.0.1'
+    compile group: 'org.glassfish.jersey.core', name: 'jersey-client', version: '2.25'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.9.0'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.2.3'
+    //compile group: 'org.glassfish.jersey.media', name: 'jersey-media-moxy', version: '2.24.1'
+    compile group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version: '2.25'
+    compile group: 'commons-lang', name: 'commons-lang', version: '2.6'
+}
+
+
