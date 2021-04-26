@@ -1,6 +1,8 @@
 package org.intermine.biotools.model.biotools;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
@@ -19,13 +21,13 @@ public class Documentation {
     @JsonProperty("url")
     private String url;
     @JsonProperty("type")
-    private String type;
+    private List<String> types;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    public Documentation(String url, String type) {
+    public Documentation(String url, List<String> types) {
         this.url = url;
-        this.type = type;
+        this.types = types;
     }
 
     @JsonProperty("url")
@@ -44,17 +46,17 @@ public class Documentation {
     }
 
     @JsonProperty("type")
-    public String getType() {
-        return type;
+    public List<String> getType() {
+        return types;
     }
 
     @JsonProperty("type")
-    public void setType(String type) {
-        this.type = type;
+    public void setType(List<String> types) {
+        this.types = types;
     }
 
-    public Documentation withType(String type) {
-        this.type = type;
+    public Documentation withType(List<String> types) {
+        this.types = types;
         return this;
     }
 

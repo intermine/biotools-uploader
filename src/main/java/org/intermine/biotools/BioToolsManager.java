@@ -7,6 +7,7 @@ import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang.StringUtils;
 import org.intermine.biotools.model.biotools.BioTool;
 import org.intermine.biotools.model.biotools.Credit;
@@ -70,10 +71,11 @@ public class BioToolsManager {
 
     private BioTool createBioToolsEntry(Instance interMineInstance) {
         BioTool bioTool = new BioTool();
-
-        bioTool.setName(interMineInstance.getName());
+        String instanceName = interMineInstance.getName();
+        bioTool.setName(instanceName);
         bioTool.setDescription(interMineInstance.getDescription());
         bioTool.setHomepage(interMineInstance.getUrl());
+        bioTool.setBiotoolsID(instanceName);
 
         if (!StringUtils.isEmpty(interMineInstance.getReleaseVersion())) {
             bioTool.setVersion(Arrays.asList(interMineInstance.getReleaseVersion()));
@@ -96,6 +98,14 @@ public class BioToolsManager {
 
     private void addBioToolsEntry(BioTool bioToolsEntry) {
         System.out.println("Adding: "+ bioToolsEntry.getName());
+        ObjectMapper mapper = new ObjectMapper();
+        // pretty print
+        try {
+            String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(bioToolsEntry);
+            System.out.println(json);
+        } catch (Exception ex) {
+
+        }
         Client client = ClientBuilder.newClient();
         try {
             Response response = client.target(BIO_TOOLS).request()
@@ -107,6 +117,7 @@ public class BioToolsManager {
             } else {
                 System.out.println("Problems adding " + bioToolsEntry.getName());
                 System.out.println("Status code " + response.getStatus());
+                System.out.println(response.toString());
             }
         } catch (Exception ex) {
             System.out.println("Problems adding " + bioToolsEntry.getName());

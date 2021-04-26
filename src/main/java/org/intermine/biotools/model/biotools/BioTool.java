@@ -421,21 +421,21 @@ public class BioTool {
 
     private List<Link> createDefaultLinks() {
         List<Link> links = new ArrayList<>();
-        links.add(new Link("https://registry.intermine.org", "Registry"));
-        links.add(new Link("http://intermine.org", "Other"));
+        links.add(new Link("https://registry.intermine.org",Arrays.asList("Software catalogue")));
+        links.add(new Link("http://intermine.org", Arrays.asList("Other")));
         return links;
     }
 
     private List<Documentation> createDefaultDocumentation() {
         List<Documentation> documentations = new ArrayList<>();
-        documentations.add(new Documentation("http://intermine.readthedocs.org/en/latest/web-services/", "API documentation"));
-        documentations.add(new Documentation("https://flymine.readthedocs.io/en/latest/", "Manual"));
+        documentations.add(new Documentation("http://intermine.readthedocs.org/en/latest/web-services/", Arrays.asList("API documentation")));
+        documentations.add(new Documentation("https://flymine.readthedocs.io/en/latest/", Arrays.asList("User manual")));
         return documentations;
     }
 
     private List<Publication> createDefaultPublication() {
         List<Publication> publications = new ArrayList<>();
-        publications.add(new Publication("10.1093/bioinformatics/bts577", "Other"));
+        publications.add(new Publication("10.1093/bioinformatics/bts577", "Usage"));
         return publications;
     }
 
